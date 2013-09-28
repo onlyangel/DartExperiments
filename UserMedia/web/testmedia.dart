@@ -13,21 +13,20 @@ void main() {
   theContext = theCanvas.getContext("2d");
   gContext = theGraph.getContext("2d");
   if ( MediaStream.supported ){
-    window.navigator.getUserMedia(audio: false, video: {'mandatory':
-                                                        { 'minAspectRatio': 1.333, 'maxAspectRatio': 1.334 },
-                                                     'optional':
-                                                        [{ 'minFrameRate': 60 },
-                                                         { 'maxWidth': 400 }]
-                                                    }).then((stream) {
-      print("eu");
+    window.navigator.getUserMedia(
+        audio: false, video: 
+          {'mandatory':
+            { 'minAspectRatio': 1.333, 'maxAspectRatio': 1.334 },
+           'optional': [{ 'minFrameRate': 60 }, { 'maxWidth': 400 }]
+          }
+      ).then((stream) {
       theVideo
         ..autoplay = true
         ..src = Url.createObjectUrlFromStream(stream);
       new Timer(new Duration(milliseconds: 100),procesImage);
-      //document.body.append(video);
     });
   }else{
-    window.alert("Html5 full suppor is not supported you should change to chrome or something");
+    query("body").nodes.add ( new Element.html ("<p>Html5 full suppor is not supported you should change to chrome or something. These is a table of the support of the features needed: <a href='http://caniuse.com/stream'>features</a> </p>"));
   }
 }
 
