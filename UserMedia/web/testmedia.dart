@@ -7,7 +7,7 @@ CanvasRenderingContext2D theContext,gContext;
 
 void main() {
   theVideo = query("#thevideo");
-  theCanvas = query("#thecanvas");
+  theCanvas = new CanvasElement();
   theGraph = query("#thegraph");
   
   theContext = theCanvas.getContext("2d");
@@ -69,7 +69,7 @@ void procesImage(){
   printStrokeForMap(blue,"#0000ff");
   printStrokeForMap(green,"#00ff00");
 
-  new Timer(new Duration(milliseconds: 10),procesImage);
+  new Timer(new Duration(milliseconds: 5),procesImage);
 }
 
 void normalizeMaxH(List<Map<String,int>> list){
@@ -93,7 +93,7 @@ void addNum(int n, Map<String, int> m){
 void printStrokeForMap(Map<String, int> map, String style){
   gContext.beginPath();
   gContext.moveTo(0, 0);
-  for (var x = 0; x < max; x++){
+  for (var x = 1; x < max; x++){
 
     var v = map["$x"];
     var val = v == null ? 0:v;
