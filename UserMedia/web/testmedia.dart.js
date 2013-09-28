@@ -3126,7 +3126,7 @@ _Future__propagateToListeners: function(source, listeners) {
     t2.listenerValueOrError_2 = null;
     t2.isPropagationAborted_3 = false;
     t4._openCallbacks = t4._openCallbacks - 1;
-    t4._runInZone$2(new P._Future__propagateToListeners_closure0(t1, t2, hasError, listeners), false);
+    t4._runInZone$2(new P._Future__propagateToListeners_closure0(t2, t1, hasError, listeners), false);
     if (t2.isPropagationAborted_3)
       return;
     t3 = t2.listenerHasValue_1 === true;
@@ -3206,7 +3206,7 @@ _Future__propagateToListeners_closure: {"": "Closure;box_2,listener_3",
   $is_void_: true
 },
 
-_Future__propagateToListeners_closure0: {"": "Closure;box_2,box_1,hasError_4,listener_5",
+_Future__propagateToListeners_closure0: {"": "Closure;box_1,box_2,hasError_4,listener_5",
   call$0: function() {
     var value, error, test, matchesTest, e, s, t1, t2, t3, exception;
     try {
@@ -4825,11 +4825,6 @@ AnchorElement_AnchorElement: function(href) {
   return e;
 },
 
-CanvasElement_CanvasElement: function(height, width) {
-  var e = document.createElement("canvas");
-  return e;
-},
-
 Element_Element$html: function(html, treeSanitizer, validator) {
   var fragment, t1;
   fragment = J.createFragment$3$treeSanitizer$validator$x(document.body, html, treeSanitizer, validator);
@@ -6142,7 +6137,7 @@ _TypedImageData: {"": "Object;data>,height>,width>", $isImageData: true, $asImag
 ["testmedia.dart", "testmedia.dart", , S, {
 main: function() {
   $.theVideo = document.querySelector("#thevideo");
-  $.theCanvas = W.CanvasElement_CanvasElement(null, null);
+  $.theCanvas = document.querySelector("#theCanvas");
   $.theGraph = document.querySelector("#thegraph");
   $.theContext = J.getContext$1$x($.theCanvas, "2d");
   $.gContext = J.getContext$1$x($.theGraph, "2d");

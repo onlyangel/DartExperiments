@@ -7,7 +7,7 @@ CanvasRenderingContext2D theContext,gContext;
 
 void main() {
   theVideo = query("#thevideo");
-  theCanvas = new CanvasElement();
+  theCanvas = query("#theCanvas");
   theGraph = query("#thegraph");
   
   theContext = theCanvas.getContext("2d");
