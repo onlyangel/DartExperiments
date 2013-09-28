@@ -46,7 +46,6 @@ void procesImage(){
   green = new Map<String, int>();
   alpha = new Map<String, int>();
   max = 0;
-  maxH = 0;
   
   for(var y = 0; y < h; y++) {
     // loop through each column
@@ -56,17 +55,14 @@ void procesImage(){
       var b = d.data[((w * y) + x) * 4 + 2];
       var a = d.data[((w * y) + x) * 4 + 3];
       
-      var arr = [r,g,b,a]
-        ..sort((a,b)=>b-a);
-      maxH = maxH < arr[0] ? arr[0] : maxH;
-      
       addNum(r,red);
       addNum(b,blue);
       addNum(g,green);
-      addNum(a,alpha);
       
     }
   }
+  
+  normalizeMaxH([red,blue,green]);
   
   gContext.clearRect ( 0 , 0 , 400 , 300 );
   printStrokeForMap(red,"#ff0000");
@@ -74,6 +70,18 @@ void procesImage(){
   printStrokeForMap(green,"#00ff00");
 
   new Timer(new Duration(milliseconds: 10),procesImage);
+}
+
+void normalizeMaxH(List<Map<String,int>> list){
+  maxH = 0;
+  for(var y = 0; y < list.length; y++) {
+    Map m = list[y];
+    for(var x = 1; x < max; x++) {
+      var v = m["$x"];
+      var val = v == null ? 0:v;
+      maxH = maxH < val ? val : maxH;
+    }
+  }
 }
 
 void addNum(int n, Map<String, int> m){
@@ -84,12 +92,12 @@ void addNum(int n, Map<String, int> m){
 }
 void printStrokeForMap(Map<String, int> map, String style){
   gContext.beginPath();
-  gContext.moveTo(0, maxH);
+  gContext.moveTo(0, 0);
   for (var x = 0; x < max; x++){
 
     var v = map["$x"];
     var val = v == null ? 0:v;
-    gContext.lineTo(x, maxH-val);
+    gContext.lineTo(x, val*300/maxH);
   }
   gContext.strokeStyle = style;
   gContext.stroke();
