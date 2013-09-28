@@ -97,7 +97,7 @@ void printStrokeForMap(Map<String, int> map, String style){
 
     var v = map["$x"];
     var val = v == null ? 0:v;
-    gContext.lineTo(x, val*300/maxH);
+    gContext.lineTo(x, 300-(val*300/maxH));
   }
   gContext.strokeStyle = style;
   gContext.stroke();
