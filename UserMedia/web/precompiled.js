@@ -3126,7 +3126,7 @@ _Future__propagateToListeners: function(source, listeners) {
     t2.listenerValueOrError_2 = null;
     t2.isPropagationAborted_3 = false;
     t4._openCallbacks = t4._openCallbacks - 1;
-    t4._runInZone$2(new P._Future__propagateToListeners_closure0(t2, t1, hasError, listeners), false);
+    t4._runInZone$2(new P._Future__propagateToListeners_closure0(t1, t2, hasError, listeners), false);
     if (t2.isPropagationAborted_3)
       return;
     t3 = t2.listenerHasValue_1 === true;
@@ -3206,7 +3206,7 @@ _Future__propagateToListeners_closure: {"": "Closure;box_2,listener_3",
   $is_void_: true
 },
 
-_Future__propagateToListeners_closure0: {"": "Closure;box_1,box_2,hasError_4,listener_5",
+_Future__propagateToListeners_closure0: {"": "Closure;box_2,box_1,hasError_4,listener_5",
   call$0: function() {
     var value, error, test, matchesTest, e, s, t1, t2, t3, exception;
     try {
@@ -4825,6 +4825,11 @@ AnchorElement_AnchorElement: function(href) {
   return e;
 },
 
+CanvasElement_CanvasElement: function(height, width) {
+  var e = document.createElement("canvas");
+  return e;
+},
+
 Element_Element$html: function(html, treeSanitizer, validator) {
   var fragment, t1;
   fragment = J.createFragment$3$treeSanitizer$validator$x(document.body, html, treeSanitizer, validator);
@@ -6137,7 +6142,7 @@ _TypedImageData: {"": "Object;data>,height>,width>", $isImageData: true, $asImag
 ["testmedia.dart", "testmedia.dart", , S, {
 main: function() {
   $.theVideo = document.querySelector("#thevideo");
-  $.theCanvas = document.querySelector("#thecanvas");
+  $.theCanvas = W.CanvasElement_CanvasElement(null, null);
   $.theGraph = document.querySelector("#thegraph");
   $.theContext = J.getContext$1$x($.theCanvas, "2d");
   $.gContext = J.getContext$1$x($.theGraph, "2d");
@@ -6199,7 +6204,7 @@ procesImage: function() {
   S.printStrokeForMap($.get$red(), "#ff0000");
   S.printStrokeForMap($.get$blue(), "#0000ff");
   S.printStrokeForMap($.get$green(), "#00ff00");
-  t1 = P.Duration$(0, 0, 0, 10, 0, 0);
+  t1 = P.Duration$(0, 0, 0, 5, 0, 0);
   t2 = $.get$_Zone__current();
   t2.createTimer$2;
   t2 = new P._ZoneTimer(t2, S.procesImage$closure, null);
@@ -6273,7 +6278,7 @@ procesImage$bailout: function(state0, d, t1, h, t2, x, y, t3, w, t4, r, g, b) {
       S.printStrokeForMap($.get$red(), "#ff0000");
       S.printStrokeForMap($.get$blue(), "#0000ff");
       S.printStrokeForMap($.get$green(), "#00ff00");
-      t1 = P.Duration$(0, 0, 0, 10, 0, 0);
+      t1 = P.Duration$(0, 0, 0, 5, 0, 0);
       t2 = $.get$_Zone__current();
       t2.createTimer$2;
       t2 = new P._ZoneTimer(t2, S.procesImage$closure, null);
@@ -6353,7 +6358,7 @@ printStrokeForMap: function(map, style) {
   var x, t1, v, val, t2, t3;
   J.beginPath$0$x($.gContext);
   J.moveTo$2$x($.gContext, 0, 0);
-  x = 0;
+  x = 1;
   while (true) {
     t1 = $.max;
     if (typeof t1 !== "number")
@@ -6369,7 +6374,7 @@ printStrokeForMap: function(map, style) {
       throw t2.$div();
     if (typeof t3 !== "number")
       throw H.iae(t3);
-    J.lineTo$2$x(t1, x, t2 / t3);
+    J.lineTo$2$x(t1, x, 300 - t2 / t3);
     ++x;
   }
   J.set$strokeStyle$x($.gContext, style);
@@ -8097,9 +8102,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   _Future__propagateToListeners_closure.prototype = $desc;
-  function _Future__propagateToListeners_closure0(box_1, box_2, hasError_4, listener_5) {
-    this.box_1 = box_1;
+  function _Future__propagateToListeners_closure0(box_2, box_1, hasError_4, listener_5) {
     this.box_2 = box_2;
+    this.box_1 = box_1;
     this.hasError_4 = hasError_4;
     this.listener_5 = listener_5;
   }
